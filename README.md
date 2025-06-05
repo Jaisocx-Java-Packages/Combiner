@@ -57,3 +57,4 @@ public static void combinationItemUsageSample(String currency, boolean isSuggest
 }
 
 ```
+
