@@ -1,6 +1,8 @@
-.vscode/
-target/
-pom.xml
+/.vscode/
+/.idea/
 /.DS_Store
 /**/.DS_Store
+
+/tmp/
+/target/
 

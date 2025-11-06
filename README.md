@@ -1,60 +1,139 @@
 # Jaisocx Java Tools
 
-## Combiner Utility
+## Combiner Tool
+
 ```
 src/main/java/com/jaisocx/tools/combiner/Combiner.java
 ```
 
-### Overview
 
-The Combiner Utility is a Java library that generates all possible combinations of given input values. This is particularly useful for testing scenarios where you need to test all possible permutations of inputs.
-
-### Features
-
-- Generate combinations of values from multiple lists
-- Support for different data types
-- Not-fixed amount of input arguments
-- Less dangerous one-level loop, instead of multilevel included sub-loops
-- Easy to use
 
 ### Keywords
 - Java
-- combinations
-- permutations
-- testing
-- utility
+- Test
+- Unit Tests
 - Combiner
-- Java21
-- functional programming
-- dataset manipulation
-- enum combinations
+- Combinations
 
 
-### Usage Sample
+
+### Features
+
+- Produces every combination of several sets of data
+- Support for different data types
+- Not-fixed amount of input arguments
+- Less dangerous one-level loop, instead of multilevel included sub-loops
+
+
+
+### Tasks Solved By Combiner
+
+**Combiner** Java Class Improves JUnit tests cover level.
+
+The Combiner produces the entire set
+of every unique combination of data sets entries.
+
+
+For instance, some Java Class Method accepts 3 ( three ) input args:
+
+```Java
+  public void sampleMethod (
+      String domainName,
+      LoadingHtmlElems loadingHtmlElem,
+      boolean boolVal
+  ) {
+    // ...
+  }
 ```
-// src/main/java/com/jaisocx/tools/combiner/CombinerSample.java
 
-List<String> currencyValues = Arrays.asList("USD", "EUR", "CHF");
-List<Boolean> booleanValues = Arrays.asList(true, false);
 
-// Generate all combinations
-List<List<Object>> combinations = Combiner.combine (
-    currencyValues,
-    booleanValues
-);
 
-// iterate over combinations to use as input args in some subcall
-combinations.forEach(combinationItem -> combinationItemUsageSample (
-    // here convert the combination item value to it's original data type
-    (String) combinationItem.get(0),
-    (boolean) combinationItem.get(1)
-  )
-);
+With a JUnit test, 
+You want to cover 100% of test cases,
+for every value possible for every input arg, 
+for example, declared in data sets like these:
 
-/* sample method call to use in a one-level loop, using combinations */
-public static void combinationItemUsageSample(String currency, boolean isSuggestionValid) {
-  System.out.println(currency + " " + isSuggestionValid);
+```Java
+  String[] domainsNames = new String[] {
+      "tests-a234.example.com",
+      "tests-o987234.example.com",
+      "release.example.com"
+  };
+
+  enum LoadingHtmlElems {
+      STYLE,
+      LINK;
+  }
+
+  Boolean[] booleanValues = new Boolean[] {
+      true,
+      false
+  };
+
+```
+
+
+
+The Combiner produces the entire set of unique combinations 
+of data sets entries,
+like this:
+
+```Java
+    List<List<Object>> combinations = Combiner.combine (
+        locDomainsNames,
+        locLoadingHtmlElems,
+        locBooleanValues
+    );
+```
+
+
+
+![docs/images/Combinations400.png](docs/images/Combinations400.png)
+
+
+
+
+
+### Example
+
+```Java
+    // src/main/java/com/jaisocx/tools/combiner/CombinerExample.java
+    ...
+    ...
+
+
+    CombinerExample locInstance = new CombinerExample();
+    
+    List<String> locDomainsNames = Arrays.asList( locInstance.domainsNames );
+    List<LoadingHtmlElems> locLoadingHtmlElems = Arrays.asList( LoadingHtmlElems.values() );
+    
+    //# Example declaration of a strings array
+    // List<String> stringValues = Arrays.asList( "YES", "NO" );
+    
+    //# Example declaration of boolean values.
+    List<Boolean> locBooleanValues = Arrays.asList( true, false );
+
+
+
+    // Generate all combinations in one-level loop
+    List<List<Object>> combinations = Combiner.combine (
+        locDomainsNames,
+        locLoadingHtmlElems,
+        locBooleanValues
+    );
+
+    // use every combinations less dangerous in a one-level loop
+    CombinerExample.printCombinations ( combinations );
 }
 
+public static void printCombinations (List<List<Object>> combinations) {
+    combinations.forEach(combinationItem -> CombinerExample.printCombinationsItem( combinationItem ));
+}
+
+public static void printCombinationsItem (List<Object> combinationItem) {
+    combinationItem.forEach(object -> System.out.print( object.toString() + " " ));
+    System.out.println();
+}
 ```
+
 
