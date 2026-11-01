@@ -1,19 +1,35 @@
 package com.jaisocx.tools.combiner;
 
+import com.jaisocx.tools.combiner.i.JaisocxCombinerClsInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @usage: the Combiner class produces full set of all unique combinations of any number of input arguments, those are values sets,
- *         to use later in one-level loop, avoiding multi-level loops.
- *         I use in Java UnitTest methods, to check out, that each argument value combination doesn't lead to tested functionlity error.
- * @advantage: one-level loop implementation, more code review friendly. variable arguments number, easy to use with Strings, enums, oher data types.
- * @author: Illia Polianskyi
- * @since: 2024-07-29
- */
-public class Combiner {
 
-  public static List<List<Object>> combine(List<?>... lists) {
+
+/**
+* <b>  💡  For example, in UnitTests for the aim 100 pct cover. </b>
+*
+* <p> author: Jaisocx Inc Software Architect Illia Polianskyi </p>
+*
+* <p> JaisocxCombinerCls: the center logique class of Java package com.jaisocx.tools.combiner;
+* </p>
+*
+* <p> the Combiner class produces all unique combinations of evey dataset,
+*       like enum, array.
+*     Later the combinations are used in one-level loop, avoiding multi-level loops.
+* </p>
+*
+* <p>  advantage: one-level loop implementation, more code review friendly. variable arguments number, easy to use with Strings, enums, oher data types.</p>
+*
+* <p>  🗓  since:  🌼  Summer in year AD 2024. 2024-07-29 </p>
+*/
+public final class JaisocxCombinerCls implements JaisocxCombinerClsInterface {
+
+  /**
+  * produced are combinations of every item in every dataset, enum, array.
+  */
+  public List<List<Object>> combine (List<?>... lists) {
     List<List<Object>> combinations = new ArrayList<>();
 
     long iterationsCount = lists.length;
@@ -63,5 +79,30 @@ public class Combiner {
 
     return combinations;
   }
+
+
+
+  /**
+  * terminal prints every combination in one line
+  */
+  public void printCombinations (List<List<Object>> combinations) {
+    combinations.forEach(combinationItem -> this.printCombinationsItem( combinationItem ));
+  }
+
+
+
+  /**
+  * terminal prints every field of a combinations' item
+  */
+  public void printCombinationsItem (List<Object> combinationItem) {
+
+    // terminal prints every field of a combinations' item
+    combinationItem.forEach(object -> System.out.print( object.toString() + " " ));
+
+    // new line
+    System.out.println();
+  }
+
 }
+
 

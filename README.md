@@ -1,139 +1,164 @@
-# Jaisocx Java Tools
-
-## Combiner Tool
-
-```
-src/main/java/com/jaisocx/tools/combiner/Combiner.java
-```
 
 
-
-### Keywords
-- Java
-- Test
-- Unit Tests
-- Combiner
-- Combinations
+Jaisocx &#8482; &#169;
 
 
-
-### Features
-
-- Produces every combination of several sets of data
-- Support for different data types
-- Not-fixed amount of input arguments
-- Less dangerous one-level loop, instead of multilevel included sub-loops
+![readme/software_labels/Jaisocx/software_tm_label_jaisocx_combiner_3_2.svg](./readme/software_labels/Jaisocx/software_tm_label_jaisocx_combiner_3_2.svg)
 
 
+# Combiner
 
-### Tasks Solved By Combiner
-
-**Combiner** Java Class Improves JUnit tests cover level.
-
-The Combiner produces the entire set
-of every unique combination of data sets entries.
+  >  💡  every combination of several datasets, in one-level loop
 
 
-For instance, some Java Class Method accepts 3 ( three ) input args:
+  🍮  **️Library**   `com.jaisocx.tools.combiner` | 🏷 **️ver.**: `3.2`  
 
-```Java
-  public void sampleMethod (
-      String domainName,
-      LoadingHtmlElems loadingHtmlElem,
-      boolean boolVal
-  ) {
-    // ...
-  }
-```
+  💶  **Earn**      Raise QA coverage easier, saving up on writing multilevel combining tasks.
+
+  🗓  **Since**     AD 2024  🌼  Summer  | `AD 2024 Oct 29`
+
+  🗓  **Date**      AD 2026  🌾  Autumn  | `AD 2026 Oct 31 01:40.500 GMT_24h`
+
+  📐  **Size**      📝  JaisocxCombinerCls.java 3 KB  |  📦  jar 12 KB |  🗂  Dir 5 MB
+
+  ⚡   **Keywords**  `[ "Java", "Test", "Unit Tests", "Combiner", "Combinations" ]`
+
+  📝  **Java**     `src/main/java/com/jaisocx/tools/combiner/JaisocxCombinerCls.java`
 
 
 
-With a JUnit test, 
-You want to cover 100% of test cases,
-for every value possible for every input arg, 
-for example, declared in data sets like these:
+
+
+## Features
+
+- Secure: one level loop. Coding work of multilevel iterations, also, done time efficient.
+
+- Produces every combination of several datasets.
+
+- Any number of methods' args.
+
+- Support for any simple data types in arrays or enums.
+
+
+
+  📒  **JUnitTest example**  [readme/README_combiner_junittests.md](./readme/README_combiner_junittests.md)
+
+
+
+## The aim of the setup
+
+  >  💡  being able to solve a multilevel QA task, then the QA task for the 99% coverage will be in the sprint.
+
+
+  
+  For example, You have 3 datasets, and wish the combinations 
+  of every value of each dataset of these 3,
+  with every value in all 2 other datasets.
+  
 
 ```Java
   String[] domainsNames = new String[] {
-      "tests-a234.example.com",
-      "tests-o987234.example.com",
-      "release.example.com"
+    "tests-a234.example.com",
+    "tests-o987234.example.com",
+    "release.example.com"
   };
 
   enum LoadingHtmlElems {
-      STYLE,
-      LINK;
+    STYLE,
+    LINK;
   }
 
   Boolean[] booleanValues = new Boolean[] {
-      true,
-      false
+    true,
+    false
   };
 
 ```
 
 
+---
 
-The Combiner produces the entire set of unique combinations 
-of data sets entries,
-like this:
+
+![readme/images/Combinations.png](./readme/images/Combinations.png)
+
+
+
+
+  
+  The Combiner produces the entire set of unique combinations
+  of data sets entries.
+  
+
+
+### 1. convert arrays to ArrayLists
 
 ```Java
-    List<List<Object>> combinations = Combiner.combine (
-        locDomainsNames,
-        locLoadingHtmlElems,
-        locBooleanValues
-    );
+  List<String> locDomainsNames = Arrays.asList( domainsNames );
+  List<LoadingHtmlElems> locLoadingHtmlElems = Arrays.asList( LoadingHtmlElems.values() );
+  List<Boolean> locBooleanValues = Arrays.asList( booleanValues );
 ```
 
 
 
-![docs/images/Combinations400.png](docs/images/Combinations400.png)
-
-
-
-
-
-### Example
+### 2. combine
 
 ```Java
-    // src/main/java/com/jaisocx/tools/combiner/CombinerExample.java
-    ...
-    ...
-
-
-    CombinerExample locInstance = new CombinerExample();
-    
-    List<String> locDomainsNames = Arrays.asList( locInstance.domainsNames );
-    List<LoadingHtmlElems> locLoadingHtmlElems = Arrays.asList( LoadingHtmlElems.values() );
-    
-    //# Example declaration of a strings array
-    // List<String> stringValues = Arrays.asList( "YES", "NO" );
-    
-    //# Example declaration of boolean values.
-    List<Boolean> locBooleanValues = Arrays.asList( true, false );
+  List<List<Object>> combinations = JaisocxCombiner.combine (
+    locDomainsNames,
+    locLoadingHtmlElems,
+    locBooleanValues
+  );
+```
 
 
 
-    // Generate all combinations in one-level loop
-    List<List<Object>> combinations = Combiner.combine (
-        locDomainsNames,
-        locLoadingHtmlElems,
-        locBooleanValues
-    );
+### 3. see combinations in console
 
-    // use every combinations less dangerous in a one-level loop
-    CombinerExample.printCombinations ( combinations );
-}
+```Java
+  //  💡  print all combinations less dangerous in a one-level loop
+  JaisocxCombiner.printCombinations( combinations );
+```
 
-public static void printCombinations (List<List<Object>> combinations) {
-    combinations.forEach(combinationItem -> CombinerExample.printCombinationsItem( combinationItem ));
-}
 
-public static void printCombinationsItem (List<Object> combinationItem) {
+
+#### how this method works
+
+
+`com.jaisocx.tools.combiner.JaisocxCombinerCls`
+
+
+```Java
+  // src/main/java/com/jaisocx/tools/combiner/JaisocxCombinerCls.java
+
+  /**
+  * terminal prints every combination in one line
+  */
+  public void printCombinations (List<List<Object>> combinations) {
+    combinations.forEach(combinationItem -> this.printCombinationsItem( combinationItem ));
+  }
+
+
+
+  /**
+  * terminal prints every field of a combinations' item
+  */
+  public void printCombinationsItem (List<Object> combinationItem) {
+
+    // terminal prints every field of a combinations' item
     combinationItem.forEach(object -> System.out.print( object.toString() + " " ));
+
+    // new line
     System.out.println();
-}
+  }
+  
 ```
+
+---
+
+
+Have a nice day, Jaisocx Inc. Software Architect Illia Polianskyi
+
+
+
 
 

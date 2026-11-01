@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Sealed: true
+Class-Path: /
+Main-Class: com.jaisocx.tools.combiner.JaisocxCombinerExample
+Implementation-Title: jaisocx_combiner
+Implementation-Version: 3.2
+
+
